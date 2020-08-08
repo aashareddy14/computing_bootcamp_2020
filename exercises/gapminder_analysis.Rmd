@@ -21,6 +21,7 @@ library(tidyverse)
 
 ```{r data_read}
 gap <- read_csv("https://bit.ly/gap_data")
+gap_upd <- read.csv("https://bit.ly/gap_data_upd")
 ```
 
 ## Exercises
@@ -30,7 +31,7 @@ gap <- read_csv("https://bit.ly/gap_data")
 Take a glimpse at the data set with function `glimpse()`.
 
 ```{r glimpse}
-glimpse(gap)
+glimpse(gap_upd)
 ```
 
 How many variables and observations are in `gap`? What are the variable types
@@ -52,7 +53,7 @@ Variable   | Type
 Create a scatter plot of life expectancy versus year for the United States.
 
 ```{r ex2_part1, echo = FALSE}
-gap_usa <- gap %>% 
+gap_usa <- gap_upd %>% 
   filter(country == "United States")
 
 ggplot(data = gap_usa, mapping = aes(x = year, y = lifeExp)) +
@@ -64,8 +65,14 @@ ggplot(data = gap_usa, mapping = aes(x = year, y = lifeExp)) +
 Create a plot of life expectancy verses GDP per capita for Canada. Set the
 color of the points to be red and connect them with a solid black line.
 
-```{r ex2_part2}
+```{r ex2_part2, echo = FALSE}
 # create plot here
+gap_canada <- gap_upd %>%
+   filter(country == "Canada")
+
+ggplot(data = gap_canada, aes(x = lifeExp, y = gdpPercap)) +
+   geom_point(color = "red") +
+   geom_line()
 ```
 
 **Part 3**
@@ -75,6 +82,12 @@ countries in Africa in 1992. Set the color to be purple.
 
 ```{r ex2_part3}
 # create plot here
+
+gap_africa <- gap_upd %>%
+   filter(continent == "Africa")
+
+ggplot(data = gap_africa, aes(x = lifeExp, y = gdpPercap)) +
+   geom_point(color = "purple")
 ```
 
 ### Exercise 3
@@ -98,6 +111,12 @@ two continents.
 
 ```{r ex3_part1}
 # create plot here
+
+africa_eu_1992 <- gap_upd %>%
+   filter(continent %in% c("Africa", "Europe"), year == 1992)
+
+ggplot(data = africa_eu_1992, aes(x = lifeExp, y = gdpPercap, color = continent)) +
+   geom_point()
 ```
 
 **Part 2**
@@ -115,6 +134,12 @@ Fill the boxplots with color `darkgreen`.
 
 ```{r ex3_part2}
 # create plot here
+
+gap_2007 <- gap_upd %>%
+   filter(year == 2007)
+
+ggplot(data = gap_2007, aes(x = continent, y = gdpPercap)) +
+   geom_boxplot(fill = 'darkgreen')
 ```
 
 
