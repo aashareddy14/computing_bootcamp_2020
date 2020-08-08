@@ -36,14 +36,14 @@ glimpse(gap)
 How many variables and observations are in `gap`? What are the variable types
 for the variables in `gap`?
 
-Variable | Type
----------|----------
-Var 1    |
-Var 2    |
-Var 3    |
-Var 4    |
-Var 5    |
-Var 6    |
+Variable   | Type
+-----------|----------
+`country`  |chr
+`continent`|chr
+`year`     |int
+`lifeExp`  |dbl
+`pop`      |dbl
+`gdpPercap`|dbl
 
 ### Exercise 2
 
@@ -51,7 +51,7 @@ Var 6    |
 
 Create a scatter plot of life expectancy versus year for the United States.
 
-```{r ex2_part1, eval=FALSE}
+```{r ex2_part1, echo = FALSE}
 gap_usa <- gap %>% 
   filter(country == "United States")
 
